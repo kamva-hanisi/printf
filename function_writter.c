@@ -13,25 +13,42 @@ int _putchar(char c)
 }
 
 /**
+ * print_char - Print character
+ * @args: variable va_list
+ *
+ * Return: 1 (nbyte)
+ */
+int print_char(va_list *args)
+{
+	_putchar(va_arg(*args, int));
+	return (1);
+}
+
+/**
  * print_string - Print string
- * @str: variable char
+ * @args: variable char
  * Return: k (nbytes) or (NULL)
  */
-int print_string(char *str)
+int print_string(va_list *args)
 {
+	const char *str = va_arg(*args, const char *);
 	int count = 0;
-        int i;
+	int i;
 
 	if (str == NULL)
 	{
 		write(1, "(null)", 6);
-		return (6);
-	}
 
-	for (i = 0; str[i] != '\0'; i++)
+		count = 6;
+	}
+	else
 	{
-		_putchar(str[i]);
-		count++;
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			_putchar(str[i]);
+
+			count++;
+		}
 	}
 
 	return (count);
