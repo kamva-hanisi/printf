@@ -13,7 +13,7 @@ int func_caller(char formatter, va_list *args)
 		{'c', print_char},
 		{'s', print_string}};
 
-	size_t print_options_size = sizeof(print_options) / sizeof(print_options[0]);
+	int print_options_size = sizeof(print_options) / sizeof(print_options[0]);
 
 	int i;
 	int count = 0;
