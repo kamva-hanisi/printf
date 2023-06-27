@@ -36,6 +36,7 @@ int func_caller(char formatter, va_list *args)
 		if (formatter != '%')
 		{
 			_putchar(formatter);
+			characters_number++;
 		}
 
 		characters_number++;
