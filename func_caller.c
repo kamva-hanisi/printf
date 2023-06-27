@@ -32,7 +32,12 @@ int func_caller(char formatter, va_list *args)
 	if (count == 0)
 	{
 		_putchar('%');
-		_putchar(formatter);
+
+		if (formatter != '%')
+		{
+			_putchar(formatter);
+		}
+
 		characters_number++;
 	}
 
