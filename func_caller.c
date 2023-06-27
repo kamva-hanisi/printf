@@ -14,6 +14,7 @@ int func_caller(char formatter, va_list *args)
 		{'s', print_string},
 		{'i', print_int},
 		{'d', print_int},
+		{'b', print_binary},
 		{'\0', NULL}};
 
 	int print_options_size = sizeof(print_options) / sizeof(print_options[0]);

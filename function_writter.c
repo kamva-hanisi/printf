@@ -55,40 +55,6 @@ int print_string(va_list *args)
 }
 
 /**
- * print_big_numbers - Print whole numbers
- * @number: variable long int
- * Return: k (nbytes)
- */
-int print_big_numbers(long int number)
-{
-	int base_value = 10, count = 0, aux;
-
-	if (number >= 0 && number <= 9)
-	{
-		_putchar(number + 48);
-		count++;
-	}
-	else
-	{
-		while (number / base_value > 9)
-		{
-			base_value *= 10;
-		}
-
-		while (base_value > 0)
-		{
-			aux = number / base_value;
-			number = number % base_value;
-			_putchar(aux + 48);
-			base_value = base_value / 10;
-			count++;
-		}
-	}
-
-	return (count);
-}
-
-/**
  * print_int - Print numbers
  * @args: variable va_list
  * Return: k (nbytes) or (NULL)
@@ -117,5 +83,47 @@ int print_int(va_list *args)
 	}
 
 	return (count);
+}
+
+/**
+ * print_binary - converting to a binary value
+ * @args: decimal number
+ * Return: k (nbytes)
+ */
+int print_binary(va_list *args)
+{
+	int binary_number = va_arg(*args, int);
+	unsigned int number = (unsigned int)binary_number;
+	unsigned int pow_of_two = 1;
+	int counter = 0;
+
+	if (binary_number == 0)
+	{
+		_putchar('0');
+		counter++;
+
+		return (counter);
+	}
+
+	while (pow_of_two <= number / 2)
+	{
+		pow_of_two *= 2;
+	}
+
+	while (pow_of_two > 0)
+	{
+		int digit_number = 0;
+
+		if (number & pow_of_two)
+		{
+			digit_number = 1;
+		}
+
+		_putchar(digit_number + '0');
+		counter++;
+		pow_of_two /= 2;
+	}
+
+	return (counter);
 }
 
