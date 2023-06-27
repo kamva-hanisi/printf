@@ -18,12 +18,6 @@ int func_caller(char formatter, va_list *args)
 	int print_options_size = sizeof(print_options) / sizeof(print_options[0]);
 	int i, characters_number = 0;
 
-	if (formatter == '%')
-	{
-		_putchar(37);
-		return (1);
-	}
-
 	for (i = 0; i < print_options_size; i++)
 	{
 		if (print_options[i].formatter == formatter)
