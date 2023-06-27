@@ -8,6 +8,7 @@
  */
 int func_caller(char formatter, va_list *args)
 {
+
 	print_func print_options[] = {
 		{'c', print_char},
 		{'s', print_string},
@@ -16,17 +17,21 @@ int func_caller(char formatter, va_list *args)
 		{'\0', NULL}};
 
 	int print_options_size = sizeof(print_options) / sizeof(print_options[0]);
-	int i, characters_number = 0;
+
+	int i;
+	int count = 0;
+	int characters_number = 0;
 
 	for (i = 0; i < print_options_size; i++)
 	{
 		if (print_options[i].formatter == formatter)
 		{
 			characters_number += print_options[i].function_writer(args);
+			count++;
 		}
 	}
 
-	if (characters_number == 0 && formatter)
+	if (count == 0)
 	{
 		_putchar(formatter);
 		characters_number++;
