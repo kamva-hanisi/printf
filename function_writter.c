@@ -26,7 +26,7 @@ int print_char(va_list *args)
 
 /**
  * print_string - Print string
- * @args: variable char
+ * @args: variable va_list
  * Return: k (nbytes) or (NULL)
  */
 int print_string(va_list *args)
@@ -52,5 +52,51 @@ int print_string(va_list *args)
 	}
 
 	return (count);
+}
+
+/**
+ * print_int - Print numbers
+ * @args: variable va_list
+ * Return: k (nbytes) or (NULL)
+ */
+int print_int(va_list *args)
+{
+	long int number;
+	int counter, aux_variable, base;
+
+	counter = 0;
+	number = va_arg(*args, int);
+
+	if (number < 0)
+	{
+		number *= -1;
+		_putchar(45);
+		counter++;
+	}
+	else if (number >= 0 && number <= 9)
+	{
+		_putchar(number + 48);
+		counter++;
+	}
+	else if (number > 9)
+	{
+		base = 10;
+
+		while (number / base > 9)
+		{
+			base *= 10;
+		}
+
+		while (base > 0)
+		{
+			aux_variable = number / base;
+			number = number % base;
+			_putchar(aux_variable + 48);
+			base = base / 10;
+			counter++;
+		}
+	}
+
+	return (counter);
 }
 
