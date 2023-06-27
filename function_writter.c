@@ -31,7 +31,7 @@ int print_char(va_list *args)
  */
 int print_string(va_list *args)
 {
-	const char *str = va_arg(*args, const char *);
+	char *str = va_arg(*args, char *);
 	int count = 0;
 	int i;
 
@@ -55,48 +55,67 @@ int print_string(va_list *args)
 }
 
 /**
+ * print_big_numbers - Print whole numbers
+ * @number: variable long int
+ * Return: k (nbytes)
+ */
+int print_big_numbers(long int number)
+{
+	int base_value = 10, count = 0, aux;
+
+	if (number >= 0 && number <= 9)
+	{
+		_putchar(number + 48);
+		count++;
+	}
+	else
+	{
+		while (number / base_value > 9)
+		{
+			base_value *= 10;
+		}
+
+		while (base_value > 0)
+		{
+			aux = number / base_value;
+			number = number % base_value;
+			_putchar(aux + 48);
+			base_value = base_value / 10;
+			count++;
+		}
+	}
+
+	return (count);
+}
+
+/**
  * print_int - Print numbers
  * @args: variable va_list
  * Return: k (nbytes) or (NULL)
  */
 int print_int(va_list *args)
 {
-	long int number;
-	int counter, aux_variable, base;
-
-	counter = 0;
-	number = va_arg(*args, int);
+	int count = 0;
+	long int number = va_arg(*args, int);
 
 	if (number < 0)
 	{
 		number *= -1;
 		_putchar(45);
-		counter++;
+		count++;
+
+		count += print_big_numbers(number);
 	}
 	else if (number >= 0 && number <= 9)
 	{
 		_putchar(number + 48);
-		counter++;
+		count++;
 	}
 	else if (number > 9)
 	{
-		base = 10;
-
-		while (number / base > 9)
-		{
-			base *= 10;
-		}
-
-		while (base > 0)
-		{
-			aux_variable = number / base;
-			number = number % base;
-			_putchar(aux_variable + 48);
-			base = base / 10;
-			counter++;
-		}
+		count += print_big_numbers(number);
 	}
 
-	return (counter);
+	return (count);
 }
 
