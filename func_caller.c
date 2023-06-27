@@ -12,8 +12,6 @@ int func_caller(char formatter, va_list *args)
 	print_func print_options[] = {
 		{'c', print_char},
 		{'s', print_string},
-		{'i', print_int},
-		{'d', print_int},
 		{'\0', NULL}};
 
 	int print_options_size = sizeof(print_options) / sizeof(print_options[0]);
@@ -33,6 +31,7 @@ int func_caller(char formatter, va_list *args)
 
 	if (count == 0)
 	{
+		_putchar('%');
 		_putchar(formatter);
 		characters_number++;
 	}
